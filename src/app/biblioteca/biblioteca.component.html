@@ -1,0 +1,79 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 ">
+            <br>
+            <h1>{{ title }}</h1>
+            <div *ngIf="Role =='1'">
+                <button mat-raised-button color="primary" (click)="agregarDocumento()">Agregar Documento</button>
+            </div>
+        </div>
+    </div>
+    <br>    
+    <div class="row">
+        <div class="col-12">
+            <form [formGroup]="formData">
+                <mat-form-field class="example-full-width">
+                    <input matInput formControlName="filtro" placeholder="Buscar documento" value="">
+                  </mat-form-field>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <table mat-table [dataSource]="dataSource" style="min-width: 100%;" >
+                <ng-container matColumnDef="Id">
+                    <th mat-header-cell *matHeaderCellDef style="justify-content:center"> Id </th>
+                    <td mat-cell *matCellDef="let element"> {{element.Id }} </td>
+                </ng-container>
+                <ng-container matColumnDef="Codigo">
+                    <th mat-header-cell *matHeaderCellDef style="justify-content:center"> Código Documento </th>
+                    <td mat-cell *matCellDef="let element"> {{element.Codigo }} </td>
+                </ng-container>
+                <ng-container matColumnDef="Nombre">
+                    <th mat-header-cell *matHeaderCellDef style="justify-content:center"> Nombre Documento </th>
+                    <td mat-cell *matCellDef="let element"> {{element.Nombre }} </td>
+                </ng-container>
+                <ng-container matColumnDef="Descripción">
+                    <th mat-header-cell *matHeaderCellDef style="justify-content:center"> Descripción </th>
+                    <td mat-cell *matCellDef="let element" [innerHTML]="element.Descripcion"></td>
+                </ng-container>
+                <ng-container matColumnDef="Versión">
+                    <th mat-header-cell *matHeaderCellDef  class="text-center"> Versión </th>
+                    <td mat-cell *matCellDef="let element" class="text-center"> {{element.Version }} </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="Descargar">
+                    <th mat-header-cell *matHeaderCellDef style="justify-content:center"> Descargar </th>
+                    <td mat-cell *matCellDef="let element" style="justify-content:center"> 
+                        <button mat-icon-button color="primary" (click)="descargar(element)">
+                            <mat-icon>cloud_download</mat-icon>
+                        </button>
+                        <button *ngIf="Role == '1'" mat-icon-button color="primary" (click)="editar(element)">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button *ngIf="Role == '1'" mat-icon-button color="accent" (click)="eliminar(element)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
+    
+                <tr mat-header-row *matHeaderRowDef="tituloColumnas"></tr>
+                <tr mat-row *matRowDef="let row; columns: tituloColumnas;"></tr>
+            </table> 
+            <mat-paginator [pageSizeOptions]="[ 10, 50, 100]" showFirstLastButtons></mat-paginator>
+            <!-- <div style="background: #fff; padding: 5px;">
+                <ngx-skeleton-loader
+                    count="10"
+                    [theme]="{ 
+                    'border-radius': '1px',
+                    height: '25px',
+                    'background-color': '#eee',
+                    'border-bottom': '1px solid #8a8a8a'
+                    }"
+                ></ngx-skeleton-loader>
+            </div> -->
+        </div>
+    </div>
+    <br>
+
+</div>

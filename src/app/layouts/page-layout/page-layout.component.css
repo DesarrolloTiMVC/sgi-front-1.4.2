@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:500|Raleway&display=swap');
+
+.header-box {
+    background-color: rgb(255, 255, 255);
+    padding: 10px 0 10px 0;
+}
+
+.header-box h2 a{ 
+    color: rgb(77, 77, 77, .85);  
+    font-weight: 800; 
+}
+
+.header-box h2 a.destacado { color: rgb(244, 79, 9); font-weight: 800; } 
+.header-box a:hover{ color: #FFFCFF; text-decoration: none;  }
+
+.side-box {
+    min-height: calc(100vh - 50px);
+    background: #3D3E43; 
+    font-family: 'Montserrat', sans-serif; font-weight: normal;
+}
+.side-box h4 { font-size: 14pt; font-weight: 800; color: rgb(225,225,225); text-align:center; margin:10px 0 15px 0 }
+mat-icon{ font-size:15px; color:white  } 
+
+.nav-caption { font-size: 13px; font-weight: 400; color: rgb(255, 255, 255) }
+
+.texto-menu {
+    display: block;
+    margin:0; 
+    border: 0px solid #000000;
+    color: rgb(244, 79, 9);
+    font-weight:500;
+}
+
+.content-box { background: #f1f3f6 }
+.row-footer { background: #151522 }
+
+mat-expansion-panel { background: #3a3939; }
+mat-expansion-panel-header { background-color: #706f6f; }
+mat-expansion-panel-header a { background-color: #706f6f; }
+mat-panel-title {  background-color: #706f6f; color:#f1f3f6; }
+
+.btn-mvc { background-color: rgb(244, 79, 9); font-weight: 400; color:white }
+.btn-mvc:focus{ background-color:#ddd }  
+.dropdown-toggle { background-color: rgb(244, 79, 9);  color:white } 
+
+.accesos-directos li a { margin-left:-30px ;  color: #3d3e43; text-align: left; }
+.accesos-directos li a:hover { font-weight: bold;} 

@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="row">
+        <h1>Listado Documentos</h1>
+    </div>
+    <div class="row">
+        <div class="col-10 offset-1">
+            <input matInput placeholder="Filter">
+
+            <mat-table [dataSource]="listadoDocumentos" class="mat-elevation-z8">
+                <ng-container matColumnDef="Id">
+                    <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.Id }} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="Nombre">
+                    <mat-header-cell *matHeaderCellDef> Nombre Documento </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.Codigo }} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="Descripcion">
+                    <mat-header-cell *matHeaderCellDef> Descripción </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.Descripcion }} </mat-cell>
+                </ng-container>
+    
+                <mat-header-row *matHeaderRowDef="tituloColumnas"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: tituloColumnas;"></mat-row>
+            </mat-table>
+        </div>
+    </div>
+    <!-- <div class="row">
+        <div class="form-group col-6">
+            <button type="button" class="btn btn-success" (click)="asociarUsuarioArea()">Guardar</button>
+        </div>
+    </div> -->
+</div>

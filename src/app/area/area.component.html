@@ -1,0 +1,35 @@
+<h1>Listado areas</h1>
+<div class="row">
+    <div class="col-10 offset-1">
+        <mat-table [dataSource]="listadoAreas" class="mat-elevation-z8">
+            <ng-container matColumnDef="Id">
+                <mat-header-cell *matHeaderCellDef> Id. </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.Id}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="Nombre">
+                <mat-header-cell *matHeaderCellDef> Nombre Documento </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.Nombre }} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="Descripcion">
+                <mat-header-cell *matHeaderCellDef> Descripción </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.Descripcion }} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="Acciones">
+                <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+                <mat-cell *matCellDef="let element"> 
+                    <button mat-icon-button color="primary" (click)="editarData(element)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <!-- <button mat-icon-button color="warn" (click)="eliminar Data(element)">
+                        <mat-icon>delete</mat-icon>
+                    </button> -->
+                </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="tituloColumnas"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: tituloColumnas;"></mat-row>
+        </mat-table>
+    </div>
+</div>
+  

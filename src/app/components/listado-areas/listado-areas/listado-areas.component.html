@@ -1,0 +1,14 @@
+
+<div class="dropdown">
+    <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Mis accesos directos
+    </button>
+    
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <ul style="list-style-type: none;" class="accesos-directos">
+        <li *ngFor="let area of areas">
+            <a [routerLink]="['biblioteca/de/1/', area.Id]">{{ area.Nombre }}</a>
+        </li>
+    </ul>
+    </div>
+</div>

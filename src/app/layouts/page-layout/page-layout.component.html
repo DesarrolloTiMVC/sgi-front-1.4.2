@@ -1,0 +1,64 @@
+<div class="container-fluid">
+    <div class="row header-box d-flex flex-row">
+        <div class="col-2">
+            <img src="./assets/img/logo-nuevo-mvc.png" class="img-fluid"/>
+        </div>
+        <div class="col-5 offset-1 align-self-center">
+            <h2> <a routerLink="['inicio']">Documentos Operacionales</a> <a routerLink="['inicio']" class="destacado"> MVC</a></h2> 
+        </div>
+        <div class="col-2 text-right align-self-center">
+            <app-listado-areas></app-listado-areas>
+        </div>
+        <div class="col-2 align-self-center">
+            <a (click)="cerrarSesion()" href="#" class="float-right btn btn-mvc">
+                <mat-icon>exit_to_app</mat-icon>Cerrar Sesión 
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2 side-box" style="overflow:auto">
+            <mat-nav-list>
+                <div *ngIf="rolUsuario == '1'">
+                    <h4>Menú</h4>
+                    <p class="texto-menu">Gestión Usuarios</p>
+                    <a mat-list-item [routerLink]="['account']" [routerLinkActive]="['active']">
+                        <mat-icon>assignment_ind</mat-icon>
+                        <span class="nav-caption">Usuarios</span>
+                    </a>
+                </div>
+                <div>
+                    <p class="texto-menu" title="Biblioteca General">Documentos</p>
+                    <a mat-list-item [routerLink]="['biblioteca']" [routerLinkActive]="['active']"
+                        text="Acá están todos los documentos del sistema">
+                        <mat-icon>account_balance</mat-icon>
+                        <span class="nav-caption">Biblioteca documental</span>
+                    </a>
+                </div>
+                <div>
+                    <p class="texto-menu"
+                        title="Documentos aplicables a MVC" 
+                        text="Documentos de uso común en nuestras labores">Documentos Aplicables MVC</p>
+                    <a mat-list-item routerLink="biblioteca/de/{{ destino.Id }}" *ngFor="let destino of destinosPrimarios" style="font-size:12px">
+                        <mat-icon>navigate_next</mat-icon><span class="nav-caption">{{ destino.Nombre }}</span>
+                    </a>
+                </div>
+                <div>
+                    <p class="texto-menu"
+                        title="Documentos aplicables a MVC" 
+                        text="Documentos de uso común en nuestras labores">Más Documentos</p>
+                    <a mat-list-item routerLink="biblioteca/de/{{ destino.Id }}" *ngFor="let destino of destinosSecundarios" style="font-size:12px">
+                        <mat-icon>keyboard_arrow_right</mat-icon><span class="nav-caption">{{ destino.Nombre }}</span>
+                    </a>
+                </div>
+            </mat-nav-list>
+        </div>
+        <div class="col-10 content-box" >
+            <div class="row">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+    <div class="row row-footer" >
+        Minera Valle Central 
+    </div>
+</div>

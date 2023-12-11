@@ -1,0 +1,145 @@
+<div class="container">
+    <div class="row">
+        <h1>Editar documentos</h1>
+    </div>
+    <br>
+    <div class="row" >
+        <form [formGroup]="formDocumento" (ngSubmit)="onSubmit()">
+        <div class="form-row">
+            <div class="form-group col-3">
+                <label>Código</label>
+                <input type="text" formControlName="Codigo" class="form-control form-control-sm" [ngClass]="{ 'is-invalid': submitted && f.Codigo.errors }" />
+                <div *ngIf="submitted && f.Codigo.errors" class="invalid-feedback">
+                    <div *ngIf="f.Codigo.errors.required">Error</div>
+                </div>
+            </div>
+            
+            <div class="form-group col-4">
+                <label>Nombre documento</label>
+                <input type="text" formControlName="Nombre" class="form-control form-control-sm" [ngClass]="{ 'is-invalid': submitted && f.Nombre.errors }" />
+                <div *ngIf="submitted && f.Nombre.errors" class="invalid-feedback">
+                    <div *ngIf="f.Nombre.errors.required">Error</div>
+                </div>
+            </div>
+            <div class="form-group col-5">
+                    <label>Descripción</label>
+                    <input type="text" formControlName="Descripcion" class="form-control form-control-sm" [ngClass]="{ 'is-invalid': submitted && f.Descripcion.errors }" />
+                    <div *ngIf="submitted && f.Descripcion.errors" class="invalid-feedback">
+                        <div *ngIf="f.Descripcion.errors.required">Error</div>
+                    </div>
+                </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-4">
+                <label>Tipo Documento</label>
+                <select formControlName="TipoDocumentoId" class="form-control form-control-sm">
+                    <option *ngFor="let data of listadoTipoDocumento" [ngValue]="data.Id" >{{ data.Nombre }}</option> <!--  -->
+                </select>
+            </div>
+            
+            <div class="form-group col-3">
+                <label>Versión</label>
+                <input type="text" formControlName="Version" class="form-control form-control-sm" [ngClass]="{ 'is-invalid': submitted && f.Version.errors }" />
+                <div *ngIf="submitted && f.Version.errors" class="invalid-feedback">
+                    <div *ngIf="f.Version.errors.required">Error</div>
+                </div>
+            </div> 
+
+            <div class="form-group col-3">
+                <label>Destino </label>
+                <select formControlName="DestinoDocumentoId" class="form-control form-control-sm">
+                    <option *ngFor="let data of listadoDestinoDocumento" [ngValue]="data.Id" >{{ data.Nombre }}</option> <!--  -->
+                </select>
+            </div> 
+        </div>
+        
+        <div class="form-row">
+            <div class="form-group col-4">
+                <label>Fecha Emision</label>
+                <!-- <input type="text" formControlName="FechaEmision" placeholder="dd-mm-aaaa" class="form-control form-control-sm" [ngClass]="{ 'is-invalid': submitted && f.FechaEmision.errors }" />
+                <div *ngIf="submitted && f.FechaEmision.errors" class="invalid-feedback">
+                    <div *ngIf="f.FechaEmision.errors.required">Error</div>
+                </div>-->
+
+                <input type="text" formControlName="FechaEmision"  [matDatepicker]="FechaEmision" placeholder="Fecha emisión">
+                <mat-datepicker-toggle matSuffix [for]="FechaEmision"></mat-datepicker-toggle>
+                <mat-datepicker #FechaEmision></mat-datepicker>
+            </div>
+        
+            <div class="form-group col-4">
+                <label>Fecha Ingreso</label>
+                <!--
+                <input type="text" formControlName="FechaIngreso" placeholder="dd-mm-aaaa" class="form-control form-control-sm" [ngClass]="{ 'is-invalid': submitted && f.FechaIngreso.errors }" />
+                <div *ngIf="submitted && f.FechaIngreso.errors" class="invalid-feedback">
+                    <div *ngIf="f.FechaIngreso.errors.required">Error</div>
+                </div>-->
+                <input type="text" formControlName="FechaIngreso" [matDatepicker]="FechaIngreso"  placeholder="Fecha ingreso">
+                <mat-datepicker-toggle matSuffix [for]="FechaIngreso"></mat-datepicker-toggle>
+                <mat-datepicker #FechaIngreso></mat-datepicker>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-4">
+                <label>Subir archivo </label>
+                <input type="file"
+                        formControlName="Archivo"
+                        accept="document/*" 
+                        (change)="onFileSelect($event)"
+                        class="form-control form-control-sm"
+                        [ngClass]="{ 'is-invalid': submitted && f.nombres.errors }" />
+            </div>
+        </div>
+
+        <div class="form-group col-6">
+            <button type="submit" class="btn btn-success">Actualizar</button>
+        </div>
+        </form>
+    </div>
+    <div class="row">
+        <div class="col-10 offset-1">
+            <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                <ng-container matColumnDef="Seleccionar">
+                    <mat-header-cell *matHeaderCellDef>
+                        <mat-checkbox (change)="$event ? masterToggle() : null"
+                                    [checked]="selection.hasValue() && isAllSelected()"
+                                    [indeterminate]="selection.hasValue() && !isAllSelected()" >
+                        </mat-checkbox> 
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let row">
+                        <mat-checkbox (click)="$event.stopPropagation()"
+                                    (change)="$event ? selection.toggle(row) : null"
+                                    [checked]="selection.isSelected(row)">
+                        </mat-checkbox>
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="Nombre">
+                    <mat-header-cell *matHeaderCellDef> Nombre Documento </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.Nombre }} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="Descripcion">
+                    <mat-header-cell *matHeaderCellDef> Descripción </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.Descripcion }} </mat-cell>
+                </ng-container>
+    
+                <ng-container matColumnDef="Acciones">
+                    <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> 
+                        <button mat-icon-button color="primary" >(click)="editarData(element)" 
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button mat-icon-button color="warn">
+                            <mat-icon>delete</mat-icon>
+                        </button> 
+                    </mat-cell>
+                </ng-container>
+    
+                <mat-header-row *matHeaderRowDef="tituloColumnas"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: tituloColumnas;"></mat-row>
+            </mat-table>
+            <div class="form-group col-6">
+                <button type="button" class="btn btn-success" (click)="asociarDocumentoArea()">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>

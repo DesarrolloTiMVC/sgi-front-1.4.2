@@ -1,0 +1,9 @@
+.mat-icon-button { margin: 0; padding: 0; height:10px;} 
+tr.mat-header-cell {
+    border: 1px solid #e7e7e7;
+    font-weight: bold;
+    width: 300px !important;
+}
+td.mat-cell {
+    width: 300px !important;
+}

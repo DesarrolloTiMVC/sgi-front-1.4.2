@@ -1,0 +1,26 @@
+.custom-footer { 
+    color: white;
+    background-color:#ED6C0B;
+} 
+
+.texto-superior {
+    margin-top: 5%; 
+    height: 60.5%;
+}
+
+.f-height{
+    height: 95vh;
+}
+
+.footer-height {
+    height: 5vh;
+    color: #fff;
+    font-weight: 600;
+    background-color: #E8531D;
+    width: 100vw;
+    text-align: center;
+}
+
+.second-row {
+    width: 100%;
+}

@@ -1,0 +1,132 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h1>Agregar usuario</h1>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="paso1">
+        <div class="col-12">
+            <form [formGroup]="formUsuario" (ngSubmit)="onSubmit()">
+                <div class="form-row">
+                    <div class="form-group col-3">
+                        <label>Nombres</label>
+                        <input type="text" formControlName="FirstName" class="form-control form-control-sm" [ngClass]="{ 'is-invalid': submitted && f.FirstName.errors }" />
+                        <div *ngIf="submitted && f.FirstName.errors" class="invalid-feedback">
+                            <div *ngIf="f.FirstName.errors.required">Error</div>
+                        </div>
+                    </div>
+                    <div class="form-group col-3">
+                        <label>Apellidos</label>
+                        <input type="text" formControlName="LastName" class="form-control form-control-sm" [ngClass]="{ 'is-invalid': submitted && f.LastName.errors }" />
+                        <div *ngIf="submitted && f.LastName.errors" class="invalid-feedback">
+                            <div *ngIf="f.LastName.errors.required">Error</div>
+                        </div>
+                    </div>
+                
+                    <div class="form-group col-3">
+                        <label>E-mail</label>
+                        <input type="text" formControlName="Email" class="form-control form-control-sm" [ngClass]="{ 'is-invalid': submitted && f.Email.errors }" />
+                        <div *ngIf="submitted && f.Email.errors" class="invalid-feedback">
+                            <div *ngIf="f.Email.errors.required">Error</div>
+                        </div>
+                    </div>
+                    <div class="form-group col-3">
+                        <label>Telefono</label>
+                        <input type="text" formControlName="PhoneNumber" class="form-control form-control-sm" [ngClass]="{ 'is-invalid': submitted && f.PhoneNumber.errors }" />
+                        <div *ngIf="submitted && f.PhoneNumber.errors" class="invalid-feedback">
+                            <div *ngIf="f.PhoneNumber.errors.required">Error</div>
+                        </div>
+                    </div>
+                    <div class="form-group col-3">
+                        <label>Nombre Usuario</label>
+                        <input type="text" formControlName="UserName" class="form-control form-control-sm" [ngClass]="{ 'is-invalid': submitted && f.UserName.errors }" />
+                        <div *ngIf="submitted && f.UserName.errors" class="invalid-feedback">
+                            <div *ngIf="f.UserName.errors.required">Error</div>
+                        </div>
+                    </div>
+                    <div class="form-group col-3">
+                        <label>Contraseña</label>
+                        <input type="text" formControlName="Password" class="form-control form-control-sm" [ngClass]="{ 'is-invalid': submitted && f.Password.errors }" />
+                        <div *ngIf="formUsuario.get('Password').invalid && (formUsuario.get('Password').dirty || formUsuario.get('Password').touched)"
+                        class="alert alert-danger">
+                    
+                    <div *ngIf="formUsuario.get('Password').errors.required">
+                        Debes ingresar un password
+                    </div>
+                    <div *ngIf="formUsuario.get('Password').errors.minlength">
+                        La contraseña debe poseer al menos 6 caracteres
+                    </div>
+                    </div>
+
+                    </div>
+                    <div class="form-group col-3">
+                        <label>Rol de usuario </label>
+                        <select formControlName="RoleId" class="form-control form-control-sm">
+                            <option *ngFor="let data of listadoRoles" [ngValue]="data.Id" >{{ data.Name }}</option> <!--  -->
+                        </select>
+                    </div> 
+                </div>
+                <div class="row">
+                    <div class="form-group col-6">
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                    </div>
+                </div> 
+            </form>
+        </div>
+    </div> 
+    <br>
+    <div>
+        <div class="row" >
+            <div class="col-10 offset-1">
+                <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                    <ng-container matColumnDef="Seleccionar">
+                        <th mat-header-cell *matHeaderCellDef>
+                            <mat-checkbox (change)="$event ? masterToggle() : null"
+                                        [checked]="selection.hasValue() && isAllSelected()"
+                                        [indeterminate]="selection.hasValue() && !isAllSelected()">
+                            </mat-checkbox>
+                        </th>
+                        <td mat-cell *matCellDef="let row">
+                            <mat-checkbox (click)="$event.stopPropagation()"
+                                        (change)="$event ? selection.toggle(row) : null"
+                                        [checked]="selection.isSelected(row)">
+                            </mat-checkbox>
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="Nombre">
+                        <mat-header-cell *matHeaderCellDef> Nombre Documento </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.Nombre }} </mat-cell>
+                    </ng-container>
+                   
+                    <ng-container matColumnDef="Acciones">
+                        <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> 
+                            <button mat-icon-button color="primary" ><!-- (click)="editarData(element)" -->
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                            <!-- <button mat-icon-button color="warn" (click)="eliminar Data(element)">
+                                <mat-icon>delete</mat-icon>
+                            </button> -->
+                        </mat-cell>
+                    </ng-container>
+        
+                    <mat-header-row *matHeaderRowDef="tituloColumnas"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: tituloColumnas;"></mat-row>
+                </mat-table>
+            </div>
+        
+        </div>
+        <div class="row">
+            <div class="form-group col-6">
+                <button type="button" class="btn btn-success" (click)="asociarUsuarioArea()">Guardar</button>
+            </div>
+        </div>  
+    </div>
+</div>
+
+
+
+
+
+

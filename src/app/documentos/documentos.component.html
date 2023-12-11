@@ -1,0 +1,28 @@
+<div class="container-fluid">
+    <div class="row">
+        <h1>Listado documentos</h1>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <mat-table #table matSort [dataSource]="dataSource" class="mat-elevation-z8">
+                <ng-container matColumnDef="Id">
+                    <mat-header-cell *matHeaderCellDef> Id Documento</mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{ element.Id }} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="Codigo">
+                        <mat-header-cell *matHeaderCellDef> Código Documento</mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{ element.Codigo }} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="Descripcion">
+                        <mat-header-cell *matHeaderCellDef> Descripcion Documento</mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{ element.Descripcion }} </mat-cell>
+                </ng-container>
+    
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+        </div>
+    </div>
+</div>
+
+

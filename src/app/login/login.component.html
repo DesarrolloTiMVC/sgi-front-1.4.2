@@ -1,0 +1,59 @@
+<div class="row h-100">
+    <div class="col-8 f-height">
+        <div class="row">
+            <div class="col-12 d-flex justify-content-center">
+                <img src="assets/img/bienvenido.png" class="texto-superior"/>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-12 mx-auto d-block">
+                <img src="assets/img/subtexto.png" class="img-fluid second-row" />
+            </div>
+        </div>
+    </div>
+    <div class="col-4 f-height border border-left-dark">
+        <br><br>
+        <form [formGroup]="formLogin"  (ngSubmit)="onSubmit()">
+            <div class="row" >
+                <div class="col-12">
+                    <h3>Iniciar Sesión</h3>
+                </div>
+            </div>
+            <br>
+            <div class="row" *ngIf="mensajeError != ''">
+                <div class="col-12">
+                    <div class="alert alert-danger" >
+                        {{ mensajeError }}
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-9">
+                    <label>Correo electrónico</label>
+                    <input type="text" formControlName="UserName" class="form-control form-control-sm" [ngClass]="{ 'is-invalid': submitted && f.UserName.errors }" />
+                    <div *ngIf="submitted && f.UserName.errors" class="invalid-feedback">
+                        <div *ngIf="f.UserName.errors.required">Error</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-9">
+                    <label>Password</label>
+                    <input type="password" id="password" formControlName="Password" class="form-control form-control-sm" [ngClass]="{ 'is-invalid': submitted && f.Password.errors }" />
+                    <div *ngIf="submitted && f.Password.errors" class="invalid-feedback">
+                        <div *ngIf="f.Password.errors.required">Error</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-6">
+                    <button type="submit" [disabled]="!formLogin.valid"  id="ingresar" class="btn btn-success">Ingresar</button>
+                </div>
+            </div> 
+        </form>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12" class="footer-height">&nbsp; Ti MVC</div>
+</div>

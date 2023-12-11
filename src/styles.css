@@ -1,0 +1,29 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Montserrat:500|Raleway&display=swap');
+
+body { margin: 0 -20px 0 -20px }
+
+h1 { font-family: 'Raleway', sans-serif; }
+h2 { font-family: 'Raleway', sans-serif; }
+h5{ font-size: 18px; padding-left: 0.8em;} 
+h6{ font-size: 15px; padding-left: 0.8em;} 
+/*
+* @layout
+*/
+#header { 
+    height: 10vh !important; 
+    min-height: 10vh !important;
+    border: 1px solid #ccc
+} 
+#body-container { min-height: 85vh !important;}
+#sidebar { border-right: 1px solid #3D3E43}
+#footer { height: 5vh !important; min-height: 5vh !important; }
+mat-sidenav-container, mat-sidenav-content, mat-sidenav { height: 100%; }
+ 
+mat-sidenav { width: 250px; }
+mat-list-item { font-size: 10px; } 
+
+
+/* for sidenav to take a whole page */
+.flex-fill { flex:1; }
+
